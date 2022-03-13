@@ -25,9 +25,10 @@ void Thermistor(int16_t ADCvalue)
   int16_t R0 = 8805;  // calibrated by reading R at room temperature (=28 degree Celsius )
   int16_t B  = 3950;
   int16_t Pullup = 9930; // 10K ohm
-  
-V = ReadVoltage(A0); // ADC accuracy improved for ESP32
-R = 9990 * V / (5 - V); // assuming 9990 is the measured resistance of 10K resistor by a multi-meter.
+
+  double V;
+  V = ReadVoltage(A0); // ADC accuracy improved for ESP32
+  R = 9990 * V / (5 - V); // assuming 9990 is the measured resistance of 10K resistor by a multi-meter.
   
   // B = (log(R) - log(R0)) / (1/T - 1/T0) 
   T = 1 / (1/T0 + (log(R)-log(R0)) / B );
