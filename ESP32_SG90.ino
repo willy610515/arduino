@@ -19,7 +19,7 @@ const int inPin = 0;
 
 void setup() {
   pinMode(interruptPin, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(interruptPin), rotate, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(interruptPin), rotate, HIGH);
 	// Allow allocation of all timers
 	ESP32PWM::allocateTimer(0);
 	ESP32PWM::allocateTimer(1);
@@ -37,14 +37,15 @@ void loop() {
   while(1){
     if (digitalRead(inPin)==1)
     rotate;
-    myservo.write(pos);    // tell servo to go to position in variable 'pos'
-    delay(100);             // waits 100ms for the servo to reach the position
   }
 }
 
 void rotate() {
   pos=pos+30;
-
-  if (pos>=180)
+  myservo.write(pos);
+  delay(100); 
+  if (pos>=180){
     pos=0;
-}
+    myservo.write(pos);
+    delay(100); 
+  }}
