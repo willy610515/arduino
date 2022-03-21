@@ -27,16 +27,16 @@ void setup() {
 void loop() {
     if (digitalRead(inPin)==1)
     rotate;
-    
-    if (pos>=180){
-    pos=0;
-    myservo.write(pos);
-    delay(100); 
-  }
 }
 
 void rotate() {
   pos=pos+30;
   myservo.write(pos);
   delay(100); 
+  
+      if (pos>=180){
+    pos=0;
+    myservo.write(pos);
+    delay(100); 
+  }
 }
