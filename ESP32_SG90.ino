@@ -7,6 +7,12 @@ int servoPin = 18;
 const byte interruptPin = 0;
 int inPin = 0;
 
+#if defined(ARDUINO_ESP32S2_DEV)
+int servoPin = 17;
+#else
+int servoPin = 18;
+#endif
+
 void setup() {
   pinMode(interruptPin, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(interruptPin), rotate, FALLING);
