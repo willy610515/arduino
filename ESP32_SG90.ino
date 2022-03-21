@@ -28,7 +28,7 @@ void loop() {
     if (digitalRead(inPin)==1)
     rotate;
     
-    if (pos==180){
+    if (pos>=180){
     pos=0;
     myservo.write(pos);
     delay(100); 
